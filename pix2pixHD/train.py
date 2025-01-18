@@ -45,16 +45,22 @@ if opt.debug:
 
 opt.continue_train = "True" 
 opt.batchsize = 2
-opt.name=  "vd2.0_2"
+opt.name=  "data"
 opt.no_instance = True
 opt.label_nc = 0
-opt.dataroot =  "./datasets/vd2.0_2"
+opt.dataroot =  "../data/train"
 opt.gpu_ids= [0]
- 
-data_loader = CreateDataLoader(opt)
+
+data_loader = CreateDataLoader()
+data_loader.initialize(opt)
 dataset = data_loader.load_data()
 dataset_size = len(data_loader)
 print('#training images = %d' % dataset_size)
+
+# data_loader = CreateDataLoader(opt)
+# dataset = data_loader.load_data()
+# dataset_size = len(data_loader)
+# print('#training images = %d' % dataset_size)
 
 model = create_model(opt)
 visualizer = Visualizer(opt)

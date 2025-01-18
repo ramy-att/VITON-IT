@@ -54,10 +54,13 @@ class BaseModel(torch.nn.Module):
         save_path = os.path.join(save_dir, save_filename)  
         save_path = "/home/ml/santosh/pix2pixHD/checkpoints/vd2.0_2/50_net_G.pth"
         print("Loading::",save_path)      
+        # if not os.path.isfile(save_path):
+        #     print('%s not exists yet!' % save_path)
+        #     if network_label == 'G':
+        #         raise('Generator must exist!')
         if not os.path.isfile(save_path):
-            print('%s not exists yet!' % save_path)
-            if network_label == 'G':
-                raise('Generator must exist!')
+            print('%s not exists yet! Initializing weights randomly.' % save_path)
+            return  # Skip loading weight
         else:
             #network.load_state_dict(torch.load(save_path))
             try:

@@ -6,7 +6,7 @@ from PIL import Image
 
 cwd = os.getcwd()
 sys.path.append("../yolov5/")
-import inference_yolo
+from yolov5 import inference_yolo
 
 
 def create_3_channel(mask):
